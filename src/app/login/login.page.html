@@ -1,32 +1,36 @@
-<ion-content color="primary">
-  
-  <div class="login__container">
+<ion-content color="tertiary">
 
-    <div class="login__image">
-      
+  <div class="login__pre-container">
+
+    <div class="login__container">
+
+      <div class="login__image">
+
         <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      
-    </div>
-    <div class="login__email">
-      <ion-item>
-        <ion-input label="Email" labelPlacement="floating"></ion-input>
-      </ion-item>
-    </div>
-    <div class="login__password">
-      <ion-item>
-        <ion-input label="Password" labelPlacement="floating"></ion-input>
-      </ion-item>
+
+      </div>
+      <div class="login__email">
+        <ion-item>
+          <ion-input label="Email" labelPlacement="floating"></ion-input>
+        </ion-item>
+      </div>
+      <div class="login__password">
+
+        <ion-item>
+          <ion-input label="Password" labelPlacement="floating"></ion-input>
+        </ion-item>
+      </div>
     </div>
   </div>
-
   <div class="login__button-container">
     <ion-button expand="full" fill="solid" color="secondary" shape="round">
       Ingresar
     </ion-button>
-    <ion-button [routerLink]="['/register']" expand="full" fill="solid" shape="round" size="small" mode="ios" color="tertiary">
+    <ion-button [routerLink]="['/register']" expand="full" fill="solid" shape="round" size="small" mode="ios">
       Registrar
     </ion-button>
-    <ion-button [routerLink]="['/register']" expand="full" fill="solid" shape="round" size="small" mode="ios" >
+    <ion-button [routerLink]="['/register']" expand="full" fill="solid" shape="round" size="small" mode="ios"
+      color="tertiary">
       Olvidé mi contraseña
     </ion-button>
   </div>

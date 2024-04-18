@@ -1,13 +1,19 @@
+.login__pre-container{
+  background-color: var(--ion-color-primary);
+  border: 1px solid var(--ion-color-primary);
+  border-radius: 25px;
+  margin: 5vh 10vw;
+  padding: 5px;
+}
 .login__container{
   display: flex;
     justify-content: space-around;
     flex-direction: column;
     height: 500px;
     align-items: center;
-    margin: 5vh 10vw;
-    padding: 2vw;
-    background-color: var(--ion-color-tertiary);
-    border: 2px solid var(--ion-color-tertiary);
+    
+    background-color: var(--ion-color-secondary);
+    border: 2px solid var(--ion-color-secondary);
     border-radius: 20px;
 }
 .login__image{

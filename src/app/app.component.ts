@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { callApi } from 'src/services/OMDBService';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +7,12 @@ import { callApi } from 'src/services/OMDBService';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {
+  constructor( private moviesService: MoviesService) {
     this.callApiLocal();
   }
 
   callApiLocal()  {
-    callApi();
+    this.moviesService.getMovies();
   }
 
   
