@@ -1,33 +1,33 @@
 <ion-content color="primary">
-  
-  <div class="login__container">
 
+  <div class="login__container">
     <div class="login__image">
-      
         <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      
+        <ion-label>Subir imagen</ion-label>
     </div>
     <div class="login__email">
       <ion-item>
-        <ion-input label="Email" labelPlacement="floating"></ion-input>
+        <ion-input label="Email" labelPlacement="stacked"></ion-input>
       </ion-item>
     </div>
     <div class="login__password">
       <ion-item>
-        <ion-input label="Password" labelPlacement="floating"></ion-input>
+        <ion-input label="Contraseña" labelPlacement="stacked"></ion-input>
+      </ion-item>
+    </div>
+    <div class="login__password">
+      <ion-item>
+        <ion-input label="Reingrese Contraseña" labelPlacement="stacked"></ion-input>
       </ion-item>
     </div>
   </div>
 
   <div class="login__button-container">
     <ion-button expand="full" fill="solid" color="secondary" shape="round">
-      Ingresar
-    </ion-button>
-    <ion-button [routerLink]="['/register']" expand="full" fill="solid" shape="round" size="small" mode="ios" color="tertiary">
       Registrar
     </ion-button>
-    <ion-button [routerLink]="['/register']" expand="full" fill="solid" shape="round" size="small" mode="ios" >
-      Olvidé mi contraseña
+    <ion-button [routerLink]="['/login']" expand="full" fill="solid" shape="round" size="small" mode="ios">
+      Volver
     </ion-button>
   </div>
 
