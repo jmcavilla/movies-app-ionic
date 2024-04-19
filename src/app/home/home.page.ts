@@ -1,5 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
+import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ActionSheetController, IonModal } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { MovieData } from 'src/services/movies';
 import { MoviesService } from 'src/services/movies.service';
 
@@ -8,18 +11,37 @@ import { MoviesService } from 'src/services/movies.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
   @ViewChild(IonModal) modal: IonModal;
   public movies: Array<MovieData> = [];
   public pageMovies: number = 1;
   public isModalOpen: boolean = false;
   public selMovie: MovieData;
-
-  constructor(private moviesService: MoviesService) {}
+  paramsSub: Subscription;
+  constructor(
+    private moviesService: MoviesService,
+    private router: Router,
+    private activeRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.getMovies(`${this.pageMovies}`)
+    this.paramsSub = this.activeRoute.params.subscribe(val => {
+      // Handle param values here
+      console.log('ENTRO')
+      const token = localStorage.getItem('token');
+      console.log(token)
+      if(token !== null){
+        this.getMovies(`${this.pageMovies}`)
+      }else{
+        this.router.navigate(['/login'])
+      }
+    });
   }
+
+  public ngOnDestroy(): void {
+    // Prevent memory leaks
+    this.paramsSub.unsubscribe();
+}
 
   async getMovies(pageMovies) {
     const resp = await this.moviesService.getMovies(`${pageMovies}`)
@@ -59,4 +81,5 @@ export class HomePage implements OnInit {
   onWillDismiss(event: Event) {
     this.isModalOpen = false;
   }
+
 }

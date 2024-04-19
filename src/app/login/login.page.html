@@ -9,21 +9,23 @@
         <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
 
       </div>
-      <div class="login__email">
-        <ion-item>
-          <ion-input label="Email" labelPlacement="floating"></ion-input>
-        </ion-item>
-      </div>
-      <div class="login__password">
-
-        <ion-item>
-          <ion-input label="Password" labelPlacement="floating"></ion-input>
-        </ion-item>
-      </div>
+      <form [formGroup]="loginForm">
+        <div class="login__email">
+          <ion-item>
+            <ion-input label="Usuario" labelPlacement="floating" formControlName="user"></ion-input>
+          </ion-item>
+        </div>
+        <div class="login__password">
+          
+          <ion-item>
+            <ion-input label="Contraseña" type="password" labelPlacement="floating" formControlName="password"></ion-input>
+          </ion-item>
+        </div>
+      </form>
     </div>
   </div>
   <div class="login__button-container">
-    <ion-button [routerLink]="['/home']" expand="full" fill="solid" color="secondary" shape="round">
+    <ion-button (click)="login()" expand="full" fill="solid" color="secondary" shape="round" [disabled]="!loginForm.valid">
       Ingresar
     </ion-button>
     <ion-button [routerLink]="['/register']" expand="full" fill="solid" shape="round" size="small" mode="ios">
