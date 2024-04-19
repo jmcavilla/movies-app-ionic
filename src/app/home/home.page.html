@@ -1,16 +1,64 @@
-<ion-content [fullscreen]="true" color="tertiary">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+<ion-content [fullscreen]="false" color="tertiary">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>¡Bienvenido/a!</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="confirm()" [strong]="true">
+          <ion-icon slot="icon-only" name="settings-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
+  <ion-searchbar animated="true" placeholder="Animated" mode="ios" color="light" [debounce]="1000"
+    (ionInput)="handleInput($event)"></ion-searchbar>
+  <ion-grid fixed>
 
-  <div id="container" class="ion-padding">
-    
-    
-    <div *ngFor="let movie of movies">
-      {{ movie.original_title }}
-    </div>
+    <ion-row *ngFor="let movie of movies">
+      <ion-col size="12">
 
-  </div>
+        <app-moviecard [movie]="movie" (click)="openModalMovie(movie)"></app-moviecard>
+      </ion-col>
+    </ion-row>
+    <ion-infinite-scroll (ionInfinite)="getMoreMovies($event)" loadingSpinner="bubbles" loadingSpinner="bubbles"
+      threshold="2%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <!-- <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="getMoreMovies()" expand="full" shape="round">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row> -->
+  </ion-grid>
+  <ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="secondary">
+          <ion-title>{{selMovie.original_title}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding" color="primary">
+        <div>
+          <img *ngIf="selMovie.backdrop_path" alt="" src="http://image.tmdb.org/t/p/w500/{{selMovie.backdrop_path}}" />
+        </div>
+        <div>
+          <star-rating [starType]="'svg'" [rating]="selMovie.vote_average/2" staticColor="ok" size="large"
+            labelText="{{selMovie.vote_average | number: '1.0-1'}}" labelPosition="bottom"></star-rating>
+        </div>
+        <div>
+          <ion-item>
+            <ion-textarea value="{{selMovie.overview}}" autoGrow="true"></ion-textarea>
+          </ion-item>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
 </ion-content>

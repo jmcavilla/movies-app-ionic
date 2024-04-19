@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { MoviecardComponent } from '../components/moviecard/moviecard.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 
 @NgModule({
@@ -12,8 +14,9 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    StarRatingModule.forRoot()
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, MoviecardComponent]
 })
 export class HomePageModule {}

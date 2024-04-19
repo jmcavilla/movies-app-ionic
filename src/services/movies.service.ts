@@ -27,8 +27,12 @@ export class MoviesService {
       .catch(err => console.error(err));
   }
 
-  getMovies() {
-      return fetch(`${this.API_URL}/discover/movie`, this.options);
+  getMovies( page = "1" ) {
+    return fetch(`${this.API_URL}/discover/movie?include_adult=false&language=en-US&page=${page}`, this.options);
+  }
+
+  getMovieByName(name:string){
+    return fetch(`${this.API_URL}/search/movie?query=${name}`, this.options);
   }
 
 }
