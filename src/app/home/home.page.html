@@ -1,14 +1,5 @@
 <ion-content [fullscreen]="false" color="tertiary">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>¡Bienvenido/a!</ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="confirm()" [strong]="true">
-          <ion-icon slot="icon-only" name="settings-sharp"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+  <app-header></app-header>
   <ion-searchbar animated="true" placeholder="Animated" mode="ios" color="light" [debounce]="1000"
     (ionInput)="handleInput($event)"></ion-searchbar>
   <ion-grid fixed>
