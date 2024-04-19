@@ -10,6 +10,7 @@ export class MoviecardComponent  implements OnInit {
 
 
   @Input() movie: MovieData;
+  @Input() action: Function;
 
 
   constructor() { }

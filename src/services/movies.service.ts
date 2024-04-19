@@ -28,7 +28,7 @@ export class MoviesService {
   }
 
   getMovies( page = "1" ) {
-    return fetch(`${this.API_URL}/discover/movie?page=${page}`, this.options);
+    return fetch(`${this.API_URL}/discover/movie?include_adult=false&language=en-US&page=${page}`, this.options);
   }
 
   getMovieByName(name:string){
