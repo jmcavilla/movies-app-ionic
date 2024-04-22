@@ -37,7 +37,14 @@
           <ion-input label="Nombre" labelPlacement="stacked" type="text" [readonly]="true" la [value]="this.userData.firstName"></ion-input>
         </ion-item>
       </div>
-      
+      <div>
+        <ion-item>
+          <ion-label slot="start">Modo Oscuro</ion-label>
+          <ion-toggle slot="end" mode="ios" [(ngModel)]="themeToggle"
+          (ionChange)="toggleChange($event)">
+          </ion-toggle>
+        </ion-item>
+      </div>
     </ion-content>
   </ng-template>
 </ion-modal>

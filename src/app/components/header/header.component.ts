@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType } from '@capacitor/camera';
+import { Preferences } from '@capacitor/preferences';
 import { ActionSheetController, LoadingController } from '@ionic/angular';
 import { LoginService } from 'src/services/login.service';
 
@@ -13,19 +14,29 @@ export class HeaderComponent implements OnInit {
 
   public isModalOpen: boolean = false;
   public userData: any;
+  themeToggle = false;
 
-  constructor( 
+  constructor(
     private actionSheetCtrl: ActionSheetController,
     private loginService: LoginService,
     private router: Router,
     private loadingCtrl: LoadingController
-   ) { }
+  ) { }
 
-   ngOnInit(): void {
-       this.userData = this.loginService.getUserData();
-   }
+  ngOnInit(): void {
+    // Use matchMedia to check the user preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-  presentActionSheet = async () =>  {
+    // Initialize the dark theme based on the initial
+    // value of the prefers-color-scheme media query
+    this.initializeDarkTheme(prefersDark.matches);
+
+    // Listen for changes to the prefers-color-scheme media query
+    prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkTheme(mediaQuery.matches));
+    this.userData = this.loginService.getUserData();
+  }
+
+  presentActionSheet = async () => {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Configuracion',
       mode: 'ios',
@@ -73,7 +84,7 @@ export class HeaderComponent implements OnInit {
 
     var imageUrl = image.dataUrl;
     this.userData.image = imageUrl;
-    this.loginService.saveUserData({...this.userData, image: imageUrl})
+    this.loginService.saveUserData({ ...this.userData, image: imageUrl })
   };
 
   cancel = () => {
@@ -84,4 +95,19 @@ export class HeaderComponent implements OnInit {
     this.isModalOpen = true;
   }
 
+  // Check/uncheck the toggle and update the theme based on isDark
+  initializeDarkTheme(isDark) {
+    this.themeToggle = isDark;
+    this.toggleDarkTheme(isDark);
+  }
+
+  // Listen for the toggle check/uncheck to toggle the dark theme
+  toggleChange(ev) {
+    this.toggleDarkTheme(ev.detail.checked);
+  }
+
+  // Add or remove the "dark" class on the document body
+  toggleDarkTheme(shouldAdd) {
+    document.body.classList.toggle('dark', shouldAdd);
+  }
 }
