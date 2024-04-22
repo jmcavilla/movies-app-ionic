@@ -15,5 +15,7 @@ export class MoviecardComponent  implements OnInit {
   ngOnInit() {
     console.log('creo')
   }
-
+  get movieRate() {
+    return parseInt(this.movie.vote_average)/2
+  }
 }

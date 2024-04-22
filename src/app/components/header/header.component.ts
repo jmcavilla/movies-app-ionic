@@ -8,9 +8,10 @@ import { LoginService } from 'src/services/login.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   public isModalOpen: boolean = false;
+  public userData: any;
 
   constructor( 
     private actionSheetCtrl: ActionSheetController,
@@ -19,6 +20,9 @@ export class HeaderComponent {
     private loadingCtrl: LoadingController
    ) { }
 
+   ngOnInit(): void {
+       this.userData = this.loginService.getUserData();
+   }
 
   presentActionSheet = async () =>  {
     const actionSheet = await this.actionSheetCtrl.create({

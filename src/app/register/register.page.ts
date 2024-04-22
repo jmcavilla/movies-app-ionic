@@ -10,13 +10,9 @@ import { LoginService } from 'src/services/login.service';
   templateUrl: 'register.page.html',
   styleUrls: ['register.page.scss'],
 })
-export class RegisterPage implements OnInit{
+export class RegisterPage {
 
   registerForm;
-
-  ngOnInit(): void {
-      this.checkSession();
-  }
 
   constructor(
     private loginService: LoginService,
@@ -28,6 +24,7 @@ export class RegisterPage implements OnInit{
 
     this.registerForm = this.formBuilder.group({
       user: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      firstName: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6), this.matchValidator('confirmPassword', true)])],
       confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(6), this.matchValidator('password')])],
       image: ['', Validators.compose([])]
@@ -65,6 +62,11 @@ export class RegisterPage implements OnInit{
     //this.loginService.register(this.registerForm.value.user,this.registerForm.value.password);
     const resp = await (await this.loginService.register('kminchelle', '0lelplR')).json();
     localStorage.setItem("token", resp.token);
+    this.loginService.saveUserData({
+      image: this.image.value,
+      firstName: this.firstName.value,
+      username: this.user.value
+    })
     setTimeout(() => {
       loading.dismiss()
       this.router.navigate(['/home']);
@@ -84,20 +86,6 @@ export class RegisterPage implements OnInit{
 
   };
 
-  checkSession = async () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const data = await (await this.loginService.checkSession()).json();
-      console.log(data)
-      if (data) {
-        this.router.navigate(['/home'])
-      }else{
-        this.router.navigate(['/login'])
-      }
-
-    }
-  }
-
   get user() {
     return this.registerForm.get('user'); 
   }
@@ -108,6 +96,14 @@ export class RegisterPage implements OnInit{
 
   get confirmPassword() {
     return this.registerForm.get('confirmPassword'); 
+  }
+
+  get firstName() { 
+    return this.registerForm.get("firstName")
+  }
+
+  get image() {
+    return this.registerForm.get("image")
   }
 
 }

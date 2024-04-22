@@ -16,7 +16,10 @@ export class HomePage implements OnInit, OnDestroy {
   public movies: Array<MovieData> = [];
   public pageMovies: number = 1;
   public isModalOpen: boolean = false;
+  public movieEdit: boolean = false;
   public selMovie: MovieData;
+  public userData: any;
+
   paramsSub: Subscription;
   constructor(
     private moviesService: MoviesService,
@@ -80,6 +83,21 @@ export class HomePage implements OnInit, OnDestroy {
 
   onWillDismiss(event: Event) {
     this.isModalOpen = false;
+    const i = this.movies.findIndex(m => m.id === this.selMovie.id);
+    console.log("INDEX: ", i)
+    this.movies[i] = this.selMovie;
+  }
+
+  editMovie(){
+    this.movieEdit = !this.movieEdit;
+  }
+  onRatingChange(event) {
+    console.log(event)
+    this.selMovie.vote_average = event.rating*2;
+  }
+
+  get movieRate() {
+    return parseInt(this.selMovie.vote_average)
   }
 
 }
