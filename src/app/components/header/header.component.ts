@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Camera, CameraResultType } from '@capacitor/camera';
 import { ActionSheetController, LoadingController } from '@ionic/angular';
 import { LoginService } from 'src/services/login.service';
 
@@ -62,6 +63,18 @@ export class HeaderComponent implements OnInit {
       loading.dismiss();
     }, 2000);
   }
+
+  takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 50,
+      allowEditing: true,
+      resultType: CameraResultType.DataUrl
+    });
+
+    var imageUrl = image.dataUrl;
+    this.userData.image = imageUrl;
+    this.loginService.saveUserData({...this.userData, image: imageUrl})
+  };
 
   cancel = () => {
     this.isModalOpen = false;

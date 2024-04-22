@@ -20,7 +20,23 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding" color="primary">
+    <ion-content class="ion-padding" color="tertiary">
+      <div class="header__user-image">
+        <img alt="" (click)="takePicture()" src="{{this.userData.image ? this.userData.image : 'https://ionicframework.com/docs/img/demos/avatar.svg'}}" />
+        <ion-button (click)="takePicture()" shape="round" fill="clear" expand="full">
+          <ion-icon slot="icon-only" name="pencil"></ion-icon>
+        </ion-button>
+      </div>
+      <div>
+        <ion-item>
+          <ion-input label="Usuario" labelPlacement="stacked" type="text" [readonly]="true" la [value]="this.userData.username"></ion-input>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item>
+          <ion-input label="Nombre" labelPlacement="stacked" type="text" [readonly]="true" la [value]="this.userData.firstName"></ion-input>
+        </ion-item>
+      </div>
       
     </ion-content>
   </ng-template>
