@@ -29,18 +29,37 @@
       </ion-header>
       <ion-content class="ion-padding" color="primary">
         <div>
-          <img *ngIf="selMovie.backdrop_path" alt="" src="http://image.tmdb.org/t/p/w500/{{selMovie.backdrop_path}}" />
+          <img *ngIf="selMovie.backdrop_path" alt="" src="http://image.tmdb.org/t/p/w500/{{selMovie.poster_path}}" />
+        </div>
+        <div class="release_date">
+          {{selMovie.release_date}}
         </div>
         <div>
-          <star-rating [starType]="'svg'" [rating]="selMovie.vote_average/2" staticColor="ok" size="large"
-            labelText="{{selMovie.vote_average | number: '1.0-1'}}" labelPosition="bottom"></star-rating>
+          <star-rating [starType]="'svg'" [readOnly]="!movieEdit" [rating]="movieRate/2" staticColor="ok" size="large"
+            labelPosition="bottom" (ratingChange)="onRatingChange($event)"></star-rating>
         </div>
-        <div>
+        <div *ngIf="movieEdit">
           <ion-item>
-            <ion-textarea value="{{selMovie.overview}}" autoGrow="true"></ion-textarea>
+            <ion-textarea value="{{selMovie.overview}}" autoGrow="true" [rows]="15" [(ngModel)]="selMovie.overview"></ion-textarea>
           </ion-item>
         </div>
+        <div *ngIf="!movieEdit" class="ion-padding" >
+          <!-- <ion-item> -->
+            <p> {{selMovie.overview}}</p>
+          <!-- </ion-item> -->
+        </div>
+        <div>
+          <img *ngIf="selMovie.backdrop_path" alt="" src="http://image.tmdb.org/t/p/w500/{{selMovie.backdrop_path}}" />
+        </div>
       </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <ion-button (click)="editMovie()" expand="full" shape="round" >
+            <ion-icon *ngIf="!movieEdit" slot="icon-only" name="pencil" ></ion-icon>
+            <ion-icon *ngIf="movieEdit" slot="icon-only" name="save" ></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      </ion-footer>
     </ng-template>
   </ion-modal>
 

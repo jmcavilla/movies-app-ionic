@@ -24,6 +24,7 @@ export class RegisterPage {
 
     this.registerForm = this.formBuilder.group({
       user: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      firstName: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6), this.matchValidator('confirmPassword', true)])],
       confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(6), this.matchValidator('password')])],
       image: ['', Validators.compose([])]
@@ -61,6 +62,11 @@ export class RegisterPage {
     //this.loginService.register(this.registerForm.value.user,this.registerForm.value.password);
     const resp = await (await this.loginService.register('kminchelle', '0lelplR')).json();
     localStorage.setItem("token", resp.token);
+    this.loginService.saveUserData({
+      image: this.image.value,
+      firstName: this.firstName.value,
+      username: this.user.value
+    })
     setTimeout(() => {
       loading.dismiss()
       this.router.navigate(['/home']);
@@ -90,6 +96,14 @@ export class RegisterPage {
 
   get confirmPassword() {
     return this.registerForm.get('confirmPassword'); 
+  }
+
+  get firstName() { 
+    return this.registerForm.get("firstName")
+  }
+
+  get image() {
+    return this.registerForm.get("image")
   }
 
 }

@@ -46,4 +46,15 @@ export class LoginService {
     })
   }
 
+  saveUserData = (data) => {
+    localStorage.setItem("user",JSON.stringify({
+      image: data.image,
+      firstName: data.firstName,
+      username: data.username
+    }))
+  }
+
+  getUserData = () => {
+    return JSON.parse( localStorage.getItem("user") );
+  }
 }

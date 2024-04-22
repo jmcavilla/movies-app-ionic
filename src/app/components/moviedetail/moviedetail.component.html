@@ -14,12 +14,12 @@
       <img *ngIf="movie.backdrop_path" alt="" src="http://image.tmdb.org/t/p/w500/{{movie.backdrop_path}}" />
     </div>
     <div>
-      <star-rating [starType]="'svg'" [rating]="movie.vote_average/2" staticColor="ok" size="large"
-        labelText="{{movie.vote_average | number: '1.0-1'}}" labelPosition="bottom"></star-rating>
+      <star-rating [starType]="'svg'" [rating]="movie.vote_average" staticColor="ok" size="large"
+        labelText="{{movie.vote_average | number: '1.0-1'}}" labelPosition="bottom" [numOfStars]="10"></star-rating>
     </div>
     <div>
       <ion-item>
-        <ion-textarea value="{{movie.overview}}" autoGrow="true"></ion-textarea>
+        <ion-textarea value="{{movie.overview}}" autoGrow="true" [(ngModel)]="movie.overview"></ion-textarea>
       </ion-item>
     </div>
   </ion-content>

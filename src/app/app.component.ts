@@ -16,9 +16,9 @@ export class AppComponent {
   checkSession = async () => {
     const token = localStorage.getItem('token')
     if (token) {
-      const data = await (await this.service.checkSession()).json();
-      console.log(data)
-      if (data.token) {
+      const status = await (await this.service.checkSession()).status;
+      console.log(status)
+      if (status === 200) {
         this.router.navigate(['/home'])
       }else{
         this.router.navigate(['/login'])
