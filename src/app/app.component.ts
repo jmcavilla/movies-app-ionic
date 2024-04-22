@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
+import { LoginService } from 'src/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +9,24 @@ import { MoviesService } from '../services/movies.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor( private moviesService: MoviesService) {
-    this.callApiLocal();
+  constructor(private service: LoginService, private router: Router) {
+    this.checkSession();
   }
 
-  callApiLocal()  {
-    this.moviesService.getMovies();
-  }
+  checkSession = async () => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      const data = await (await this.service.checkSession()).json();
+      console.log(data)
+      if (data.token) {
+        this.router.navigate(['/home'])
+      }else{
+        this.router.navigate(['/login'])
+      }
 
+    }else{
+      this.router.navigate(['/login'])
+    }
+  }
   
 }

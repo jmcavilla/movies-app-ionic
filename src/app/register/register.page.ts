@@ -10,13 +10,9 @@ import { LoginService } from 'src/services/login.service';
   templateUrl: 'register.page.html',
   styleUrls: ['register.page.scss'],
 })
-export class RegisterPage implements OnInit{
+export class RegisterPage {
 
   registerForm;
-
-  ngOnInit(): void {
-      this.checkSession();
-  }
 
   constructor(
     private loginService: LoginService,
@@ -83,20 +79,6 @@ export class RegisterPage implements OnInit{
     this.registerForm.image = imageUrl;
 
   };
-
-  checkSession = async () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const data = await (await this.loginService.checkSession()).json();
-      console.log(data)
-      if (data) {
-        this.router.navigate(['/home'])
-      }else{
-        this.router.navigate(['/login'])
-      }
-
-    }
-  }
 
   get user() {
     return this.registerForm.get('user'); 

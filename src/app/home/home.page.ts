@@ -82,4 +82,5 @@ export class HomePage implements OnInit, OnDestroy {
     this.isModalOpen = false;
   }
 
+  
 }
