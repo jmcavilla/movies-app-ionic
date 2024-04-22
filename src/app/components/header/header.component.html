@@ -8,3 +8,20 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-modal [isOpen]="isModalOpen" (willDismiss)="cancel()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="secondary">
+        <ion-title>Perfil</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cancel()" [strong]="true">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding" color="primary">
+      
+    </ion-content>
+  </ng-template>
+</ion-modal>
