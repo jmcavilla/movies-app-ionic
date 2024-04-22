@@ -10,9 +10,9 @@ import { LoadingController } from '@ionic/angular';
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss'],
 })
-export class LoginPage implements OnInit{
+export class LoginPage implements OnInit {
 
-  loginForm; 
+  loginForm;
 
   constructor(
     private service: LoginService,
@@ -29,30 +29,39 @@ export class LoginPage implements OnInit{
   }
 
   ngOnInit = (): void => {
-      const token = localStorage.getItem('token')
-      if(token) {
-        this.router.navigate(['/home'])
-      }
+    this.checkSession();
   }
 
 
-  login = async() => {
+  login = async () => {
     const loading = await this.loadingController.create()
     loading.present()
     console.log(this.loginForm.value)
     //this.service.login(this.loginForm.value.user,this.loginForm.value.password);
-    const resp = await this.service.login('kminchelle','0lelplR');
+    const resp = await this.service.login('kminchelle', '0lelplR');
     const { token } = await resp.json();
 
     console.log(token);
     setTimeout(() => {
-      
-      if(token) {
+
+      if (token) {
         loading.dismiss()
         localStorage.setItem('token', token);
         this.router.navigate(['/home'])
       }
     }, 2500);
+  }
+
+  checkSession = async () => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      const data = await (await this.service.checkSession()).json();
+      console.log(data)
+      if (data) {
+        this.router.navigate(['/home'])
+      }
+
+    }
   }
 
 }

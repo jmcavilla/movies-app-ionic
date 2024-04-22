@@ -10,6 +10,8 @@ import { LoginService } from 'src/services/login.service';
 })
 export class HeaderComponent {
 
+  public isModalOpen: boolean = false;
+
   constructor( 
     private actionSheetCtrl: ActionSheetController,
     private loginService: LoginService,
@@ -23,6 +25,10 @@ export class HeaderComponent {
       header: 'Configuracion',
       mode: 'ios',
       buttons: [
+        {
+          text: 'Ver perfil',
+          handler: this.openModal
+        },
         {
           text: 'Cerrar sesion',
           role: 'destructive',
@@ -52,4 +58,13 @@ export class HeaderComponent {
       loading.dismiss();
     }, 2000);
   }
+
+  cancel = () => {
+    this.isModalOpen = false;
+  }
+
+  openModal = () => {
+    this.isModalOpen = true;
+  }
+
 }

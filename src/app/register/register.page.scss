@@ -4,7 +4,7 @@
 }
 
 .login__container{
-    height: 510px;
+    min-height: 410px;
 }
 
 .login__image{
@@ -13,4 +13,19 @@
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
+  padding: 50px;
+  img{
+    min-height: 100px;
+    min-width: 100px;
+  }
+}
+
+.padding{
+  padding: 0px 10px;
+}
+
+ion-item{
+  border-radius: 15px;
+  margin: 4px 0px;
+  border: 2px solid;
 }

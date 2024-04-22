@@ -1,29 +1,35 @@
-<ion-content color="tertiary">
+<ion-content color="primary">
   <div class="login__pre-container">
   <div class="login__container">
-    <div class="login__image">
-        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-        <ion-label>Subir imagen</ion-label>
-    </div>
-    <div class="login__email">
-      <ion-item>
-        <ion-input label="Email" labelPlacement="stacked"></ion-input>
-      </ion-item>
-    </div>
-    <div class="login__password">
-      <ion-item>
-        <ion-input label="Contraseña" labelPlacement="stacked"></ion-input>
-      </ion-item>
-    </div>
-    <div class="login__password">
-      <ion-item>
-        <ion-input label="Reingrese Contraseña" labelPlacement="stacked"></ion-input>
-      </ion-item>
-    </div>
+    <form [formGroup]="registerForm">
+      <div class="login__image" (click)="takePicture()">
+        <img alt="Silhouette of a person's head" src="{{this.registerForm.image ? this.registerForm.image : 'https://ionicframework.com/docs/img/demos/avatar.svg'}}" />
+        <ion-button (click)="takePicture()" shape="round" fill="clear">
+          <ion-icon slot="icon-only" name="pencil"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="login__email padding">
+        <ion-item>
+          <ion-input label="Usuario*" labelPlacement="stacked" formControlName="user" errorText="Usuario incorrecto"></ion-input>
+        </ion-item>
+      </div>
+      <div class="login__password padding">
+        <ion-item>
+          <ion-input type="password" label="Contraseña*" labelPlacement="stacked" formControlName="password" errorText="Contraseña incorrecta"></ion-input>
+        </ion-item>
+
+      </div>
+      <div class="login__password padding">
+        <ion-item>
+          <ion-input type="password" label="Reingrese Contraseña*" labelPlacement="stacked" formControlName="confirmPassword" errorText="Las contraseñas no coinciden"></ion-input>
+        </ion-item>
+      </div>
+    </form>
+    <ion-label color="tertiary">(*) Datos obligatorios</ion-label>
   </div>
 </div>
   <div class="login__button-container">
-    <ion-button expand="full" fill="solid" color="secondary" shape="round">
+    <ion-button (click)="register()" expand="full" fill="solid" color="secondary" shape="round" [disabled]="!registerForm.valid">
       Registrar
     </ion-button>
     <ion-button [routerLink]="['/login']" expand="full" fill="solid" shape="round" size="small" mode="ios">

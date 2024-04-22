@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { MoviecardComponent } from '../components/moviecard/moviecard.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { HeaderComponent } from '../components/header/header.component';
+import { MoviedetailComponent } from '../components/moviedetail/moviedetail.component';
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import { HeaderComponent } from '../components/header/header.component';
     HomePageRoutingModule,
     StarRatingModule.forRoot()
   ],
-  declarations: [HomePage, MoviecardComponent, HeaderComponent]
+  declarations: [HomePage, MoviecardComponent, HeaderComponent, MoviedetailComponent]
 })
 export class HomePageModule {}
