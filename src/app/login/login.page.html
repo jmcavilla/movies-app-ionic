@@ -1,8 +1,8 @@
-<ion-content color="primary">
+<ion-content color="light">
 
   <div class="login__image">
 
-    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    <img alt="Silhouette of a person's head" src="../../assets/images/moprexvie.png" />
 
   </div>
   <div class="login__pre-container">
@@ -12,20 +12,20 @@
       <form [formGroup]="loginForm">
         <div class="login__email padding">
           <ion-item>
-            <ion-input label="Usuario" labelPlacement="stacked" formControlName="user"></ion-input>
+            <ion-input label="Usuario" labelPlacement="stacked" formControlName="user" errorText="Debe ingresar un usuario valido"></ion-input>
           </ion-item>
         </div>
         <div class="login__password padding">
           
           <ion-item>
-            <ion-input label="Contraseña" type="password" labelPlacement="stacked" formControlName="password"></ion-input>
+            <ion-input label="Contraseña" type="password" labelPlacement="stacked" formControlName="password" errorText="Debe ingresar una contraseña valida"></ion-input>
           </ion-item>
         </div>
       </form>
     </div>
   </div>
   <div class="login__button-container">
-    <ion-button (click)="login()" expand="full" fill="solid" color="secondary" shape="round" [disabled]="!loginForm.valid">
+    <ion-button (click)="login()" expand="full" fill="solid" color="tertiary" shape="round" [disabled]="!loginForm.valid">
       Ingresar
     </ion-button>
     <ion-button [routerLink]="['/register']" expand="full" fill="solid" shape="round" size="small" mode="ios">

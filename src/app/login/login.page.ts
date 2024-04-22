@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
           firstName,
           username: this.loginForm.value.user
         })
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home'], {replaceUrl: true})
       }
     }, 2500);
   }
