@@ -1,0 +1,17 @@
+.header__user-image{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 50px;
+    align-items: center;
+    img{
+        @media (min-width:600px)  {
+            width: 400px;
+        height: 400px;
+          }
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 2px solid var(--ion-color-primary);
+    }
+}

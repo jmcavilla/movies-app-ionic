@@ -1,0 +1,11 @@
+<ion-card color="primary">
+  <img *ngIf="movie.backdrop_path" alt="" src="http://image.tmdb.org/t/p/w500/{{movie.backdrop_path}}" />
+  <ion-card-header>
+    <ion-card-title>{{ movie.original_title }}</ion-card-title>
+  </ion-card-header>
+  <star-rating [starType]="'svg'" [rating]="movieRate" staticColor="ok" [readOnly]="true" [numOfStars]="5"></star-rating>
+
+  <ion-card-content>
+    {{ movie.overview }}
+  </ion-card-content>
+</ion-card>

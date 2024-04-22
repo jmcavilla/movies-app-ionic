@@ -5,6 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { MoviecardComponent } from '../components/moviecard/moviecard.component';
+import { StarRatingModule } from 'angular-star-rating';
+import { HeaderComponent } from '../components/header/header.component';
+import { MoviedetailComponent } from '../components/moviedetail/moviedetail.component';
 
 
 @NgModule({
@@ -12,8 +16,9 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    StarRatingModule.forRoot()
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, MoviecardComponent, HeaderComponent, MoviedetailComponent]
 })
 export class HomePageModule {}

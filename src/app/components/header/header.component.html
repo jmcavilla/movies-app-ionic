@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>¡Bienvenido/a {{userData.firstName}}!</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentActionSheet()" [strong]="true">
+        <ion-icon slot="icon-only" name="settings-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-modal [isOpen]="isModalOpen" (willDismiss)="cancel()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="secondary">
+        <ion-title>Perfil</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cancel()" [strong]="true">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding" color="tertiary">
+      <div class="header__user-image">
+        <img alt="" (click)="takePicture()" src="{{this.userData.image ? this.userData.image : 'https://ionicframework.com/docs/img/demos/avatar.svg'}}" />
+        <ion-button (click)="takePicture()" shape="round" fill="clear" expand="full">
+          <ion-icon slot="icon-only" name="pencil"></ion-icon>
+        </ion-button>
+      </div>
+      <div>
+        <ion-item>
+          <ion-input label="Usuario" labelPlacement="stacked" type="text" [readonly]="true" la [value]="this.userData.username"></ion-input>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item>
+          <ion-input label="Nombre" labelPlacement="stacked" type="text" [readonly]="true" la [value]="this.userData.firstName"></ion-input>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label slot="start">Modo Oscuro</ion-label>
+          <ion-toggle slot="end" mode="ios" [(ngModel)]="themeToggle"
+          (ionChange)="toggleChange($event)">
+          </ion-toggle>
+        </ion-item>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

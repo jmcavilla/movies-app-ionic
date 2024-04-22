@@ -1,0 +1,31 @@
+.register__title{
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.login__container{
+    min-height: 410px;
+}
+
+.login__image{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  padding: 50px;
+  img{
+    width: 150px;
+        height: 150px;
+  }
+}
+
+.padding{
+  padding: 0px 10px;
+}
+
+ion-item{
+  border-radius: 15px;
+  margin: 4px 0px;
+  border: 2px solid;
+}
