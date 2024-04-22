@@ -13,6 +13,7 @@ import { LoginService } from 'src/services/login.service';
 export class RegisterPage {
 
   registerForm;
+  image: any;
 
   constructor(
     private loginService: LoginService,
@@ -27,8 +28,6 @@ export class RegisterPage {
       firstName: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6), this.matchValidator('confirmPassword', true)])],
       confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(6), this.matchValidator('password')])],
-      image: ['', Validators.compose([])]
-
     })
 
   }
@@ -63,7 +62,7 @@ export class RegisterPage {
     const resp = await (await this.loginService.register('kminchelle', '0lelplR')).json();
     localStorage.setItem("token", resp.token);
     this.loginService.saveUserData({
-      image: this.image.value,
+      image: this.image,
       firstName: this.firstName.value,
       username: this.user.value
     })
@@ -75,14 +74,14 @@ export class RegisterPage {
 
   takePicture = async () => {
     const image = await Camera.getPhoto({
-      quality: 90,
+      quality: 50,
       allowEditing: true,
       resultType: CameraResultType.DataUrl
     });
 
     var imageUrl = image.dataUrl;
     console.log(imageUrl)
-    this.registerForm.image = imageUrl;
+    this.image = imageUrl;
 
   };
 
@@ -102,8 +101,5 @@ export class RegisterPage {
     return this.registerForm.get("firstName")
   }
 
-  get image() {
-    return this.registerForm.get("image")
-  }
 
 }
