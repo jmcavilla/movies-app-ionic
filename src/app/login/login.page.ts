@@ -36,7 +36,6 @@ export class LoginPage implements OnInit {
   login = async () => {
     const loading = await this.loadingController.create()
     loading.present()
-    console.log(this.loginForm.value)
     //this.service.login(this.loginForm.value.user,this.loginForm.value.password);
     const resp = await this.service.login('kminchelle', '0lelplR');
     const { token, firstName, image } = await resp.json();
@@ -51,7 +50,7 @@ export class LoginPage implements OnInit {
           firstName,
           username: this.loginForm.value.user
         })
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home'], {replaceUrl: true})
       }
     }, 2500);
   }

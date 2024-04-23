@@ -15,7 +15,6 @@ export class MoviedetailComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("first")
     this.selMovie = this.movie;
   }
 

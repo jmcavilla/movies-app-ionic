@@ -30,9 +30,7 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnInit() {
     this.paramsSub = this.activeRoute.params.subscribe(val => {
       // Handle param values here
-      console.log('ENTRO')
       const token = localStorage.getItem('token');
-      console.log(token)
       if(token !== null){
         this.getMovies(`${this.pageMovies}`)
       }else{
@@ -46,23 +44,33 @@ export class HomePage implements OnInit, OnDestroy {
     this.paramsSub.unsubscribe();
 }
 
-  async getMovies(pageMovies) {
+  async getMovies(pageMovies, reset = false) {
     const resp = await this.moviesService.getMovies(`${pageMovies}`)
     const data = await resp.json();
-    this.movies = [...this.movies, ...data.results];
-
-    console.log(this.movies)
+    if(reset){
+      this.movies = [...data.results];
+    }else{
+      this.movies = [...this.movies, ...data.results];
+    }
   }
 
 
   async handleInput(event) {
     const query = event.target.value.toLowerCase();
-    const resp = await (await this.moviesService.getMovieByName(query)).json();
-    this.movies = resp && resp.results;
+    if(query){
+      const resp = await (await this.moviesService.getMovieByName(query)).json();
+      this.movies = resp && resp.results;
+    }else{
+      this.resetMovies();
+    }
+  }
+
+  resetMovies () {
+    this.pageMovies = 1;
+    this.getMovies(`${this.pageMovies}`, true);
   }
 
   getMoreMovies(event) {
-    console.log("ENTRO")
     this.pageMovies += 1;
     this.getMovies(`${this.pageMovies}`);
     event.target.complete();
@@ -84,7 +92,6 @@ export class HomePage implements OnInit, OnDestroy {
   onWillDismiss(event: Event) {
     this.isModalOpen = false;
     const i = this.movies.findIndex(m => m.id === this.selMovie.id);
-    console.log("INDEX: ", i)
     this.movies[i] = this.selMovie;
   }
 
@@ -92,7 +99,6 @@ export class HomePage implements OnInit, OnDestroy {
     this.movieEdit = !this.movieEdit;
   }
   onRatingChange(event) {
-    console.log(event)
     this.selMovie.vote_average = event.rating*2;
   }
 
