@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">movies-app</string>
-    <string name="title_activity_main">movies-app</string>
+    <string name="app_name">MoPrexVie</string>
+    <string name="title_activity_main">MoPrexVie</string>
     <string name="package_name">com.jmcavilla.moviesapp</string>
     <string name="custom_url_scheme">com.jmcavilla.moviesapp</string>
 </resources>

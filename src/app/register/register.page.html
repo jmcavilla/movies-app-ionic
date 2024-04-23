@@ -1,11 +1,11 @@
-<ion-content color="primary">
+<ion-content color="light">
   <div class="login__pre-container">
   <div class="login__container">
     <form [formGroup]="registerForm">
       <div class="login__image" (click)="takePicture()">
         <img alt="Silhouette of a person's head" src="{{this.image ? this.image : 'https://ionicframework.com/docs/img/demos/avatar.svg'}}" />
-        <ion-button (click)="takePicture()" shape="round" fill="clear">
-          <ion-icon slot="icon-only" name="pencil"></ion-icon>
+        <ion-button (click)="takePicture()" shape="round" fill="outline">
+          Subir imagen
         </ion-button>
       </div>
       <div class="login__email padding">
@@ -34,7 +34,7 @@
   </div>
 </div>
   <div class="login__button-container">
-    <ion-button (click)="register()" expand="full" fill="solid" color="secondary" shape="round" [disabled]="!registerForm.valid">
+    <ion-button (click)="register()" expand="full" fill="solid" color="tertiary" shape="round" [disabled]="!registerForm.valid">
       Registrar
     </ion-button>
     <ion-button [routerLink]="['/login']" expand="full" fill="solid" shape="round" size="small" mode="ios">

@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="false" color="tertiary">
   <app-header></app-header>
   <ion-searchbar animated="true" placeholder="Animated" mode="ios" color="light" [debounce]="1000"
-    (ionInput)="handleInput($event)"></ion-searchbar>
+    (ionInput)="handleInput($event)" (ionCancel)="resetMovies()"></ion-searchbar>
   <ion-grid fixed>
     
     <ion-row >
@@ -42,7 +42,7 @@
           <ion-row>
             <ion-col sizeXs="12" sizeMd="6">
               <div class="poster_path">
-                <img *ngIf="selMovie.poster_path" alt="" src="http://image.tmdb.org/t/p/w500/{{selMovie.poster_path}}" />
+                <img *ngIf="selMovie.poster_path" alt="" src="https://image.tmdb.org/t/p/w500/{{selMovie.poster_path}}" />
               </div>
               <div class="release_date">
                 {{selMovie.release_date}}
@@ -64,7 +64,7 @@
                 <!-- </ion-item> -->
               </div>
               <div>
-                <img *ngIf="selMovie.backdrop_path" alt="" src="http://image.tmdb.org/t/p/w500/{{selMovie.backdrop_path}}" />
+                <img *ngIf="selMovie.backdrop_path" alt="" src="https://image.tmdb.org/t/p/w500/{{selMovie.backdrop_path}}" />
               </div>
             </ion-col>
           </ion-row>

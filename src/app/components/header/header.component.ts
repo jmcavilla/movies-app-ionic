@@ -67,7 +67,6 @@ export class HeaderComponent implements OnInit {
     const loading = await this.loadingCtrl.create();
 
     loading.present();
-    console.log("entro")
     this.loginService.logout();
     setTimeout(() => {
       this.router.navigate(['login'])

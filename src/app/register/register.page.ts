@@ -68,7 +68,7 @@ export class RegisterPage {
     })
     setTimeout(() => {
       loading.dismiss()
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home'], {replaceUrl: true});
     }, 3500);
   }
 
@@ -80,7 +80,6 @@ export class RegisterPage {
     });
 
     var imageUrl = image.dataUrl;
-    console.log(imageUrl)
     this.image = imageUrl;
 
   };
