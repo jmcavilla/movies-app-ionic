@@ -28,11 +28,6 @@ Para correr el proyecto de manera local, se debe ejecutar el siguiente comando:
 Luego se podra abrir en cualquier navegador en el siguiente link: http://localhost:8081
 
 
-## Demo
-
-Insert gif or link to demo
-
-
 ## Screenshots
 
 ![Imagen 1](https://i.ibb.co/TbXh3Gd/merge-from-ofoct.jpg)
