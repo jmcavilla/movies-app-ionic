@@ -80,7 +80,6 @@ export class RegisterPage {
     });
 
     var imageUrl = image.dataUrl;
-    console.log(imageUrl)
     this.image = imageUrl;
 
   };

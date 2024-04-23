@@ -17,7 +17,6 @@ export class AppComponent {
     const token = localStorage.getItem('token')
     if (token) {
       const status = await (await this.service.checkSession()).status;
-      console.log(status)
       if (status === 200) {
         this.router.navigate(['/home'], {replaceUrl: true})
       }else{

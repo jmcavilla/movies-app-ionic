@@ -18,15 +18,6 @@ export class MoviesService {
     }
   };
 
-
-  callApi() {
-
-    fetch(`${this.API_URL}`, this.options)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err));
-  }
-
   getMovies( page = "1" ) {
     return fetch(`${this.API_URL}/discover/movie?include_adult=false&language=en-US&page=${page}`, this.options);
   }

@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="false" color="tertiary">
   <app-header></app-header>
   <ion-searchbar animated="true" placeholder="Animated" mode="ios" color="light" [debounce]="1000"
-    (ionInput)="handleInput($event)"></ion-searchbar>
+    (ionInput)="handleInput($event)" (ionCancel)="resetMovies()"></ion-searchbar>
   <ion-grid fixed>
     
     <ion-row >
